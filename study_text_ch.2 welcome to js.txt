@@ -1,0 +1,68 @@
+주석은 문장 앞에 "//" 표시를 붙이면 됨
+
+2.0 Your First JS Project
+  - html파일에서 느낌표(!)를 한번 누르고 엔터를 치면 html 기본 포맷이 나온다.
+  - html -> head -> link:css 를 치고 엔터를 누르면 style.css와 자동으로 연결된다.
+  - html -> body -> <script src="app.js"></script>를 치면 js파일 불러온다.
+  - 구글창에서는 console을 켜고 대부분의 시간을 보낼것(js 때문)
+
+2.1 Basic Data Types(자료형)
+  - js는 콘솔입력값이 정수(integer)인지 실수(float)인지 문자(string)인지 자동으로 판단한다.
+
+2.2 Variables
+  - console.log(xxx12123); 콘솔 로그 안의 내용은 print와 같다.
+  - 문자(string)는 앞뒤에 큰따옴표(")나 작은 따옴표(')로 묶어야 한다. 같은 따옴표로 열고 닫아야 한다.
+  - const : 상수(constant)
+  - 파이썬은 very_long_variable_name(snake_case), js는 veryLongVariableName(camelCase) 이 국룰
+  - const와 같이 변수 선언을 해주는 언어를 syntax(문법)이라고 하고
+    파이썬은 syntax를 선언하지 않고 변수입력이 가능함
+
+2.3 const and let
+  - 변수만들때 let, const, var차이
+  - const 재선언 금지, 재할당 금지(default로 사용한다)
+  - let 재선언 금지, 재할당 가능(특별히 변수 변경이 필요할 때 사용한다)
+  - var 재선언 가능, 재할당 가능(비사용, 구식으로 언어를 통한 보호를 받지못한다. 이해안됨ㅠ 그냥 쓰지말자)
+  - 초반에 변수를 let으로 선언했는지 const로 선언했는지를 보면 코드를 짠 개발자의 의도를 알 수 있다.
+
+2.4 Booleans
+  - 참(true), 거짓(false)으로 구분하는 변수(예 : 사용자가 로그인 했는가?)
+  - null : 아무것도 없다는 것을 확실히 할 때 쓰는것. true/false같은 정의도 없다는 내용임
+  - undefined : 변수(variable)만 선언하고 메모리에 값을 넣지 않을경우(boolean, null 등도 값임)
+
+2.5 Arrays
+  - Array를 만들기 위해서는 대괄호"[ ]"안에 콤마"," 구분으로 아무형태나 넣으면 됨
+  - array 안의 데이터에 접근하고 싶다면, variable이름을 적어주고 대괄호를 열어서 원하는 순번의 숫자를 넣어준다
+    !!주의!!! 컴퓨터는 첫번째가 0이다. 0,1,2,3,4...이런식으로 순번이 매겨진다.
+  - array를 지정 후에도 안의 데이터를 수정(추가, 삭제 포함)할 수 있다.(예제1. 추가 : 변수.push("string")
+
+2.6 Objects
+  - Object는 property(속성을) 가진 데이터를 저장하며, 중괄호" { } "를 사용한다.
+    -> Object 안에 속성변수를 지정하고 그 속성변수의 값을 지정한다.
+    -> 예) const player = { name : "nico", points : 10, ..... }
+  - const로 Object를 선언해도 property 추가 및 변경이 가능하다.
+    -> 예) player.lastName = "potato";
+  - 설명이 필요하지 않은 데이터 리스트들은 array로, 설명이 필요한 정보가 담긴 데이터 리스트들은 object로!
+
+2.7~8 Function
+  - 반복해서 사용할 수 있는 코드 조각
+    예제) function sayHello ( ) { console.log("Hello!"); }
+  - Array는 대괄호"[ ]", Object는 중괄호"{ }", Function은 소괄호 "( )"로 실행된다.
+  - argument는 function 소괄호"( )"에 정보를 보내는 인자들을 지칭한다.
+    예제) function sayHello(nameOfPerson, age) { console.log("hello" + nameOfPerson + "I'm" + age) }
+           (여기서 argument는 nameOfPerson, age 두개 임)
+           sayHello("nico", 20); sayHello("lynn", 20);  << nico, 20, lynn, 20이 argument이며 function에 들어갈 정보임
+  - Object 안에 Function을 만들수도 있음 예) const player = { sayHello : function (name) { console.log(name) }; };
+
+2.11 Returns
+  - Function을 수행하고 결과값을 밖으로 소통하기 위하여 내보내주는 기능
+   (예 : y=f(x) 에서 x를 넣으면 return으로 y값을 내보낸다. 여기서 f는 function)
+  - return을 수행하고 난 다음의 명령은 수행되지 않는다.(javascript의 문법임)
+  - Function은 한번 수행되고 나면 결과값(return)을 내보내고 기존 인자를 삭제한다.
+
+2.13~15 conditionals(조건문) - if, else
+  - 참(true) 인지 거짓(false)인지 확인해주는 문구로서 자주 사용할 것임
+    예) 사용자가 로그인 되어있는지?, 날씨 정보를 알 수 있는지?
+  - prompt를 사람들이 안쓰는 이유 : 팝업제한해둔 브라우저도 많고 메세지가 안이쁘고 css로 꾸밀 수 없음(구식임)
+  - parseInt : 문자(string)를 정수(int)로 바꾸어줌(문자가 숫자로 이루어져있을 경우에만, 아닐경우 NaN 반환)
+  - isNaN : argument가 숫자가 아닌지(NaN : Not a Number) 확인해주는 function임(반환값 : True / False)
+  - and(&&), or(||), eqaul(===) 표시 확인하자
