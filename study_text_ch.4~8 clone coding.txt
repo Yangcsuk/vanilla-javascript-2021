@@ -45,3 +45,12 @@
     1) localStorge에 data가 없으면(===null) loginForm의 Hidden을 제거(remove) 후 onLoginSubmit을 실행하고,
     2) localStorage에 data가 있으면 paintGreeting함수에 저장된 data(savedUsername)을 입력하여 실행한다.
 
+5.0 Intervals
+  - setInterval(function, xx밀리초); : xx ms마다 function을 호출한다.
+
+5.1 Timeouts and Dates
+  - function getClock() {
+	const date = new Date();
+	clock.innerText = (`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
+	}
+    setInterval(getClock, 1000); 코딩완료
