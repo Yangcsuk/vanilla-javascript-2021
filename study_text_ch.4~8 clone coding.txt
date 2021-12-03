@@ -1,0 +1,47 @@
+4.0 Input Values
+  - login form을 통하여 username을 입력하고 login button을 누르면 loginInput 변수(const)에 저장함
+  - 본인이  생성한 string을 반복해서 사용하게 될 경우에는 대문자 변수로 저장해놓는 습관을 기르자
+    (대문자 변수로 저장해놓지 않으면, 나중에 오타가 생기면 에러가 발생하지 않아 에러를 찾는데 힘들 수 있음)
+    (아마 무조건 이걸로 실수하고 하룻밤 꼬박 밤새봐야, 아 미리 이런 습관을 들일걸 하는 후회하며 적용할 듯)
+    
+4.1 Form Submission
+  - login form(username)이 비어있어도 안되고, 너무 길어도 안됨(15자 이내)
+  - 비어있으면 안되는 내용 :  if (username ===""){ alert("Plaese Write your name"); }
+  - 15자 이내 제한방법 : else if (username.length > 15) { alert("Your name is too long"); }
+  - 이렇게 user가 입력하는 값의 유효성(validation)을 확인하는 것은 좋다. 왜냐면, user는 항상 이상한 짓을 하기때문
+  - 코코아 클론에서 배웠듯이(=너는 무조건 까먹었을거다) input은 form안에 넣어 15자 이내 및 빈칸 방지 기능이 있음
+    <input required maxlength="15" type="text" placeholder="What is your name?" />
+  - 그런데, form안에 있는 input을 눌러 submit하면 html페이지가 계속 새로고침이 된다. 이걸 다음 강의에서 고쳐보자.
+
+4.2~3 Events
+  - form이 submit 되면 html 페이지가 새로고침 되는것은 브라우저의 기본기능이다.
+    →!! 우리는 이 기본기능을 멈춰야 한다.!!
+  - (중요)function을 선언하고, function이름 뒤에 "(), 작은괄호"를 붙이면 바로 해당 function을 실행해 버린다.
+  - addEventListener("특정event", function)
+    : 특정event가 발생하면, function에 특정정보(argument)를 담아서 function을 실행시킨다.
+  - preventDefault() : 어떤 event의 기본행동이 발생되지 않도록 막는다.(예 : submit 하면 HTML 새로고침 되는것 등..)
+
+4.4 Getting Username
+  - button, input 등을 숨기고 싶을 때
+    1) css에 hidden class만들고 display : none ; 을 넣는다.
+    2) loginForm.classList.add("hidden");
+  - 반대로 미리 숨겨놓고(class = "hidden")특정 event 이후 나타내고 싶을 때 : greeting.classList.remove("hidden");
+  - 두개의 문자열을 합치고 싶을 때("Hello username")
+    1) greeting.innerText = "Hello " + username;
+    2) greeting.innerText = `Hello ${username}`;   '가 아니라 ~쓸 때 shift 안누르고 쓰면 나오는 ` 임!!(백틱이라고 함)
+  - display:none은 잡아둔 공간 자체도 사라지고 visibility:hidden 기존 공간은 유지됨
+
+4.5 Saving Username
+  - 저장장소가 여러가지가 있음(Local Storage, Web SQL, Cookies, Trusted Token...)
+  - 이번 강의는 Local Storage API를 사용할 것임.
+  - localStorage는 브라우저가 가지고 있는 작은 DB같은 API이다.(API 뜻은 모름ㅋㅋ)
+  - localStorage.setItem("key","value") : 로컬스토리지에 키와 값을 저장함.
+  - localStorage.getItem("key") -> 키(key)를 호출하면 값(value)을 출력한다.
+  - localStorage.removeItem("key") : 로컬스토리지에 key에 해당되는 값을 삭제한다.
+
+4.6 Loading Username
+
+  - if else 구문을 사용하여
+    1) localStorge에 data가 없으면(===null) loginForm의 Hidden을 제거(remove) 후 onLoginSubmit을 실행하고,
+    2) localStorage에 data가 있으면 paintGreeting함수에 저장된 data(savedUsername)을 입력하여 실행한다.
+
