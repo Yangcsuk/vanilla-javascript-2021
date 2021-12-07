@@ -1,3 +1,5 @@
+윈도우 기준 이모지 단축키는 "win" + "." 
+
 4.0 Input Values
   - login form을 통하여 username을 입력하고 login button을 누르면 loginInput 변수(const)에 저장함
   - 본인이  생성한 string을 반복해서 사용하게 될 경우에는 대문자 변수로 저장해놓는 습관을 기르자
@@ -54,3 +56,47 @@
 	clock.innerText = (`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
 	}
     setInterval(getClock, 1000); 코딩완료
+
+5.2 PadStart
+  - 00, 01, 02.... 이렇게 한자리 일때도 앞에 숫자 "0"을 가지고 싶다!!!!
+  - padStart(2, "0") : 2자리 숫자 중 1자리만 올 때 앞에 "0"을 넣어준다.
+  - padEnd(2, "0") : 2자리 숫자 중 1자리만 올 때 뒤에 "0"을 넣어준다.
+
+6.0 Quotes
+  - JS에서 기본으로 제공하는 Math 기능(Function)을 이용하면 다양한 것을 할 수 있다.
+  - Math.random() => 0 "이상" 1 "미만" 사이의 무작위(random)값을 생산해줌
+  - Math.round() => 소수 첫째 자리에서 반올림(4사5입)해줌
+  - Math.ceil() => 소수 첫째 자리에서 올림
+  - Math.floor() => 소수 첫재 자리에서 내림
+  - Array.length => Array의 길이(n) 값을 반환(return)함, -> quotes.length = 10 (quotes안의 명언 갯수는 10개이다.)
+  - Math.floor(Math.random() * quotes.length) = 내림값(floor)을 이용해서 n개의 값을 random하게 선택할 수 있다. 
+
+6.1 Background
+  - 이미지파일들에 대해서 Array를 만들 때, string 형식("파일명.jpeg")으로 해두자.
+  - Random Image는 앞시간에 배운 Math 함수를 낼름 복사해와서 쓰자
+  - document.createElement("img") : JS에서 HTML로 element를 전송함(여기선 random 배경)
+  - bgImage.src = `img/${chosenImage}`;  document.body.appendChild(bgImage);
+
+7.0 To do List Setup
+  - submit 해도 새로고침(refresh)안되게 하는 방법(greetings.js 만들 때 배웠음)
+  - submit 후에 입력창 비우는 방법 : toDoInput.value = "";
+
+7.1 Adding "To Do"s
+  1) li와 span 변수를 선언한다. 
+     → const li =  document.createElement("li");
+     → const span = document.createElement("span");
+  2) 변수(span)에 할일(newTodo) 값을 입력하고, 생성된 변수<li> 안에 <span>을 넣는다.
+     → span.innerText = newTodo;
+     → li.appendChild(span);
+  3) HTML(ul id=todo-list)에 1),2)로 만든 li를 toDoList에 붙인다.
+     → toDoList.appendChild(li);
+
+7.2 Deleting "To Do"s
+  - const li = event.target.parentElement = 클릭(event.target)된 element(button)의 부모 = li
+  - li.remove(); 끝!! 깔끔!!
+
+7.3 Savings To Dos
+  - 먼저 할일들(To Dos)을 저장하기 위해 Array를 만든다. → const toDos = []; 
+  - Todo Submit 할 때 toDos Array에 입력(push)한다. → toDos.push(newTodo) 
+  - 메모리 뿐 아니라 localStorage에도 넣고싶다. 그리고 string+Array로 구성된 localStorage를 가지고 싶다.
+    → JSON.stringify()를 사용하자.  localStorage.setItem("todos", JSON.stringify(toDos)); 끝. 깔끔!!
