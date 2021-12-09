@@ -100,3 +100,20 @@
   - Todo Submit 할 때 toDos Array에 입력(push)한다. → toDos.push(newTodo) 
   - 메모리 뿐 아니라 localStorage에도 넣고싶다. 그리고 string+Array로 구성된 localStorage를 가지고 싶다.
     → JSON.stringify()를 사용하자.  localStorage.setItem("todos", JSON.stringify(toDos)); 끝. 깔끔!!
+
+7.4~5 Loading To Dos
+  - 새로고침을 하면 localStorage에 있는 ToDos는 표시되지 않는다. = 새로고침해도 저장된 ToDos를 표시하고싶다!!
+  - localStorage에 넣은것은 일반 자료를 살아있는 JS object로 만들어서 표시하자!!
+  - JSON.parse(localStorage.getItem("todos")) ↔ localStorage.getItem("todos") 차이점 반드시 알자!!!
+    1) localStorage.getItem("todos") : todos를 string으로 인식(니꼬는 이걸 죽은 자료로 말함)
+    2) JSON.parse(localStorage.getItem("todos")) : todos를 array(object)로 인식(니꼬는 이걸 살아있는 자료로 말함)
+  - forEach : array에 있는 각각의 item을 개별로 실행한다(예 : variable.forEach(function); variable이 7개면 7번실행함
+  - detail한 coding 수정이 있는데, 그동안 메커니즘을 잘 따라왔다면 니코가 짠 코드를 이해할 수 있을 것이다.
+   (물론 나는 겨우겨우 이해했다고 생각했는데, 마지막엔 따라가기 바빴다. = 챌린지를 무조건 다시 해야함)
+
+7.8~9 Deleting To Dos
+  - 현재 문제점
+    1) toDo내용이 중복되면 지울 때 혼선이 올 수  있다. -> toDo에 고유(=랜덤) 아이디를 만들어주자
+       - Date.now() : 현재시간을 1/1000초로 표시해준다 = 거의 랜덤형식의 아이디를 만들어준다.
+        const newToDoObj = { text:newToDo, id: Date.now(), };
+       - 여기서  생성된 id를 doDos(li)에 넣어준다 => li.id = newToDo.id
