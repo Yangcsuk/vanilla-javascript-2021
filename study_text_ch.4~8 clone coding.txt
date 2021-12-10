@@ -111,9 +111,24 @@
   - detail한 coding 수정이 있는데, 그동안 메커니즘을 잘 따라왔다면 니코가 짠 코드를 이해할 수 있을 것이다.
    (물론 나는 겨우겨우 이해했다고 생각했는데, 마지막엔 따라가기 바빴다. = 챌린지를 무조건 다시 해야함)
 
-7.8~9 Deleting To Dos
+7.8~10 Deleting To Dos
   - 현재 문제점
-    1) toDo내용이 중복되면 지울 때 혼선이 올 수  있다. -> toDo에 고유(=랜덤) 아이디를 만들어주자
-       - Date.now() : 현재시간을 1/1000초로 표시해준다 = 거의 랜덤형식의 아이디를 만들어준다.
-        const newToDoObj = { text:newToDo, id: Date.now(), };
-       - 여기서  생성된 id를 doDos(li)에 넣어준다 => li.id = newToDo.id
+    toDo내용이 중복되면 지울 때 혼선이 올 수  있다. -> toDo에 고유(=랜덤) 아이디를 만들어주자
+       1) Date.now() : 현재시간을 1/1000초로 표시해준다 = 거의 랜덤형식의 아이디를 만들어준다.
+          const newToDoObj = { text:newToDo, id: Date.now(), };
+       2) 여기서  생성된 id를 doDos(li)에 넣어준다 => li.id = newToDo.id
+  - filter : forEach와 유사. variable.filter(function); function에 각각 variable을 넣어 실행하고 true값을 반환 받아야 함.
+            만약, true값을 반환(return)받지 못하면 그 변수(variable)은 새로운 array에 포함되지 않을것임(=필터링됨)
+  - filter 함수는 새로운 array를 만드는 것이지 기존 array를 변경하는게 아니다.
+    따라서, 진짜 필터링 기능을 구현할 거면 기존 localStorage에 있는 array를 지우고 새로운 array로 넣어야 한다.
+  - parseInt(variable) : string 변수를 number 변수로 변환시켜줌
+    최종 코딩내용  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id)); saveTodos();
+
+8.0 Geolocation
+  - 단 몇줄의 코딩으로 현재 내 위치(위도, 경도)를 알 수 있다.
+    navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
+    function onGeoOk(position)
+    {const lat = position.coords.latitude; const lng = position.coords.longitude;  console.log("You live in", lat, lng); }
+  - API는 다른 서버와 이야기 할 수 있는 방법임(UI = 일반인의 interface, API = 개발자의 interface)
+  - openweather.org에서 나의 위도(lat)와 경도(lon) 정보를 주고 현재 위치 날씨정보를 얻을 수 있다.(자세한내용생략)
+  - 마지막은 백엔드 부분에 대해서 살짝 맛보기 정도로 핥고 지나갔음
